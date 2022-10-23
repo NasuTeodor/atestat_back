@@ -7,7 +7,7 @@ class Dbh
     public function __construct()
     {
         try {
-            $this->_pdo = new PDO('mysql:host=localhost;dbname=elevi', 'root', '');
+            $this->_pdo = new PDO('mysql:host=localhost;dbname=atestat', 'root', '');
         } catch (PDOException $e) {
             die($e->getMessage());
         }
