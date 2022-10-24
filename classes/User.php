@@ -10,7 +10,7 @@ class User
     {
 
         $this->_db = Dbh::getInstance();
-        $this->_db = new Dbh();
+        // $this->_db = new Dbh();
         $this->_uid = $uid;
         $this->_pass = $pass;
     }

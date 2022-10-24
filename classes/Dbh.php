@@ -22,7 +22,7 @@ class Dbh
         return self::$_instance;
     }
 
-    private function query($sql, $params)
+    public function query($sql, $params)
     {
 
         if ($this->_query = $this->_pdo->prepare($sql)) {
@@ -86,6 +86,23 @@ class Dbh
         }
     }
 
+    public function select_order($table, $where = array())
+    {
+
+        if (count($where) == 3) {
+            $operators = array("=", ">", "<", "<=", ">=");
+            $field = $where[0];
+            $operator = $where[1];
+            $value = $where[2];
+
+            if (in_array($operator, $operators)) {
+                $sql = "SELECT * FROM {$table} WHERE {$field} {$operator} ? ORDER BY timp DESC";
+                $this->query($sql, array($value));
+            }
+            return $this;
+        }
+    }
+
 
     // FUNCTIONEAZA MAI BINE PICIOARELE LUI COSMIN
     public function update($table, $id, $fields = array())
@@ -137,6 +154,27 @@ class Dbh
 
         $sql = "TRUNCATE TABLE {$table}";
         $this->query($sql, $none = array());
+    }
+
+
+    public function special_query($sql)
+    {
+        $this->_query = $this->_pdo->prepare($sql);
+        try{
+            if($this->_query->execute())
+                return 1;
+            else
+                return 0;
+        }
+        catch(Exception $e){
+            return 0;
+        }
+        
+        
+        // if($this->_query->execute())
+        //     return 1;
+        // else 
+        //     return 0;
     }
 
     public function results()
