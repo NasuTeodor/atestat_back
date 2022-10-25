@@ -19,7 +19,8 @@ if ($method == "POST") {
     $chat = new Chat($uid1, $uid2);
     $exists = $chat->testFor();
     if(!$exists)
-        echo "nu se are chatul";
+        // echo "nu se are chatul";
+        echo "";
     else{
         $mesaje = $chat->getMessages(50);
         echo json_encode($mesaje);
