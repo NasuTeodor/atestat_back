@@ -63,6 +63,7 @@ class Chat
         // echo $this->_chat;
         $mesaje = $this->_db->select_order($this->_chat, array('1', '=', '1'))->results();
         $firstN = array_slice($mesaje, 0, $numberOf, true);
+        $firstN = array_reverse($firstN);
         return $firstN;
     }
 }
