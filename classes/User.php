@@ -9,8 +9,8 @@ class User
     public function __construct($uid, $pass)
     {
 
-        $this->_db = Dbh::getInstance();
-        // $this->_db = new Dbh();
+        // $this->_db = Dbh::getInstance();
+        $this->_db = new Dbh();
         $this->_uid = $uid;
         $this->_pass = $pass;
     }
@@ -44,11 +44,15 @@ class User
     }
 
     //corecteaza campurile pentru baza
-    public function createUser()
+    public function createUser($img)
     {
         $taken = $this->takenUser();
         if (!$taken) {
-            $this->_db->insert("users", array("uid" => $this->_uid, "pass" => $this->_pass));
+            $this->_db->insert("users", array(
+                "uid" => $this->_uid,
+                "pass" => $this->_pass,
+                "poza" => $img
+        ));
             return 1;
         } else
             return 0;
@@ -75,9 +79,8 @@ class User
         $results = $this->_db->select("users", array("1", "=", "1"))->results();
         $users = array();
         foreach($results as $key=>$val){
-            array_push($users, $val->uid);
+            array_push($users, $val->{"uid"});
         }
         return $users;
-
     }
 }

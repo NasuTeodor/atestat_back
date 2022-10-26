@@ -16,18 +16,18 @@ if ($method == "POST") {
     $data = json_decode(file_get_contents('php://input'));
     $uid = $data->uid;
 
-    $chat = new Chat($uid, $uid);
     $user = new User(" ", " ");
     $userList = $user->getUsers();
     $chatList = array();
-
+    
     foreach($userList as $usr){
         if($usr != $uid)
         {
-            $chat->setUsers($uid, $usr);
-            $conv = $chat->testFor();
-            if($conv)
-                array_push($chatList, $chat->chat);
+            //OH NO LORD NO
+            $chat = new Chat($uid, $usr);
+            // $chat->setUsers($uid, $usr);
+            if($chat->testFor())
+                array_push($chatList, $usr);
         }
     }
 

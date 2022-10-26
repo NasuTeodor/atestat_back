@@ -20,6 +20,7 @@ class Chat
     {
         $this->uid1 = $uid1;
         $this->uid2 = $uid2;
+        $this->_chat = "";
     }
 
     // ESTE 100% VULNERABIL LA SQL INJECTION SI SUNT CONSTIENT DE ASTA
@@ -35,13 +36,11 @@ class Chat
 
         // echo $result1 . "<br>" . $result2;
         if ($result1 || $result2) {
-            if ($result1)
-            {
+            if ($result1) {
                 // $this->_chat = $test1.explode(" ", $test1);
                 // echo explode(" ", $test1)[1];
                 $this->_chat = explode(" ", $test1)[1];
-            } else
-            {
+            } else {
                 // $this->_chat = $test2;
                 // echo explode(" ", $test2)[1];
                 $this->_chat = explode(" ", $test2)[1];
@@ -54,14 +53,14 @@ class Chat
     //ESTE LA FEL DE VULNERABILA LA SQL INJECTION
     public function createChat()
     {
-        $sql = 'CREATE TABLE chat' . $this->_uid1 . $this->_uid2
-            . '( uid varchar(256),
+        if (!$this->testFor()) {
+            $sql = 'CREATE TABLE chat' . $this->_uid1 . $this->_uid2
+                . '( uid varchar(256),
              mesaj varchar(1024),
              timp int(11) )';
-
-        echo $sql . "<br>";
-
-        $this->_db->query($sql, array());
+            // echo $sql . "<br>";
+            $this->_db->query($sql, array());
+        }
     }
 
     public function getMessages($numberOf)

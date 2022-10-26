@@ -10,7 +10,7 @@ header("Access-Control-Allow-Methods: *");
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == "POST") {
-    
+
     $data = json_decode(file_get_contents('php://input'));
     $sender = $data->sender;
     $mesaj = $data->mesaj;
@@ -20,14 +20,20 @@ if ($method == "POST") {
     $chat = new Chat($uid1, $uid2);
     $chat->testFor();
 
+    if (!$chat->testFor())
+        $chat->createChat();
+
+    $chat->testFor();
+
     $table = $chat->_chat;
     $timp = time();
 
     $db = Dbh::getInstance();
 
-    $db->insert($table, array(
-                            "uid"=>$sender,
-                            "mesaj"=>$mesaj,
-                            "timp"=>$timp ));
-
+    if ($chat->testFor())
+        $db->insert($table, array(
+            "uid" => $sender,
+            "mesaj" => $mesaj,
+            "timp" => $timp
+        ));
 }
