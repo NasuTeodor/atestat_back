@@ -23,7 +23,6 @@ class Chat
     }
 
     // ESTE 100% VULNERABIL LA SQL INJECTION SI SUNT CONSTIENT DE ASTA
-    //DOAMNE AJUTA
     public function testFor()
     {
         $test1 = "DESCRIBE chat" . $this->_uid1 . $this->_uid2;

@@ -12,18 +12,22 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method == "POST") {
     
     $data = json_decode(file_get_contents('php://input'));
-    
+    $sender = $data->sender;
+    $mesaj = $data->mesaj;
     $uid1 = $data->uid1;
     $uid2 = $data->uid2;
 
     $chat = new Chat($uid1, $uid2);
-    $exists = $chat->testFor();
-    if(!$exists)
-        // echo "nu se are chatul";
-        echo "";
-    else{
-        $mesaje = $chat->getMessages(50);
-        echo json_encode($mesaje);
-    }
+    $chat->testFor();
+
+    $table = $chat->_chat;
+    $timp = time();
+
+    $db = Dbh::getInstance();
+
+    $db->insert($table, array(
+                            "uid"=>$sender,
+                            "mesaj"=>$mesaj,
+                            "timp"=>$timp ));
 
 }
