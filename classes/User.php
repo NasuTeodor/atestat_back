@@ -69,4 +69,15 @@ class User
         }
         return 0;
     }
+
+    public function getUsers()
+    {
+        $results = $this->_db->select("users", array("1", "=", "1"))->results();
+        $users = array();
+        foreach($results as $key=>$val){
+            array_push($users, $val->uid);
+        }
+        return $users;
+
+    }
 }

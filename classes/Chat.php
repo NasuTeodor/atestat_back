@@ -10,9 +10,16 @@ class Chat
 
     public function __construct($user1, $user2)
     {
-        $this->_db = Dbh::getInstance();
+        // $this->_db = Dbh::getInstance();
+        $this->_db = new Dbh();
         $this->_uid1 = $user1;
         $this->_uid2 = $user2;
+    }
+
+    public function setUsers($uid1, $uid2)
+    {
+        $this->uid1 = $uid1;
+        $this->uid2 = $uid2;
     }
 
     // ESTE 100% VULNERABIL LA SQL INJECTION SI SUNT CONSTIENT DE ASTA
