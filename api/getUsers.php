@@ -11,7 +11,7 @@ header("Access-Control-Allow-Methods: *");
 $method = $_SERVER['REQUEST_METHOD'];
 
 //NU STIU DACA MERGE AI GRIJA CAMARADE
-if ($method) {
+if ($method == "POST") {
 
     $data = json_decode(file_get_contents('php://input'));
 
