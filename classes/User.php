@@ -59,7 +59,7 @@ class User
     }
 
     //CHECK FOR ALREADY TAKEN TO BE USED IN CREATE USER
-    private function takenUser()
+    public function takenUser()
     {
         $users = $this->_db->select("users", array("1", "=", "1"))->results();
         // if(in_array($this->_uid ,$users[0]->{'uid'}))
@@ -69,7 +69,12 @@ class User
         // echo " <br>";
         foreach ($users as $key => $val) {
             if ($this->_uid == $val->{"uid"})
-                return 1;
+            return 1;
+        }
+        // nu pot sa cred ca verific si astea || greseala la struct bazei de date
+        foreach ($users as $key => $val){
+            if($this->_pass == $val->{"pass"})
+            return 1;
         }
         return 0;
     }
