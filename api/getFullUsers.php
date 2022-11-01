@@ -17,7 +17,7 @@ if ($method == "POST") {
     $db = Dbh::getInstance();
     $results = $db->select("users", array('1', '=', '1'))->results();
 
-    if ($user != "")
+    if ($user == "")
         echo json_encode($results);
     else
         foreach ($results as $key => $val) {
