@@ -31,6 +31,6 @@ if ($method == "POST") {
         }
     }
 
-    echo json_encode($chatList);
+    echo json_encode($userList);
 
 }

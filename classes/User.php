@@ -30,7 +30,7 @@ class User
         //     return 0;
         // print_r($result[0]->{'pass'});
 
-        if(count($result) == 0)
+        if (count($result) == 0)
             return 0;
 
         if ($result[0]->{'uid'} == $this->_uid && $result[0]->{'pass'} == $this->_pass)
@@ -52,7 +52,7 @@ class User
                 "uid" => $this->_uid,
                 "pass" => $this->_pass,
                 "poza" => $img
-        ));
+            ));
             return 1;
         } else
             return 0;
@@ -69,12 +69,12 @@ class User
         // echo " <br>";
         foreach ($users as $key => $val) {
             if ($this->_uid == $val->{"uid"})
-            return 1;
+                return 1;
         }
         // nu pot sa cred ca verific si astea || greseala la struct bazei de date
-        foreach ($users as $key => $val){
-            if($this->_pass == $val->{"pass"})
-            return 1;
+        foreach ($users as $key => $val) {
+            if ($this->_pass == $val->{"pass"})
+                return 1;
         }
         return 0;
     }
@@ -83,8 +83,11 @@ class User
     {
         $results = $this->_db->select("users", array("1", "=", "1"))->results();
         $users = array();
-        foreach($results as $key=>$val){
-            array_push($users, $val->{"uid"});
+        foreach ($results as $key => $val) {
+            array_push($users, array(
+                "uid" => $val->{"uid"},
+                "poza"  => $val->{"poza"}
+            ));
         }
         return $users;
     }
