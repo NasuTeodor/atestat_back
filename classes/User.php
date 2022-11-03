@@ -82,13 +82,14 @@ class User
     public function getUsers()
     {
         $results = $this->_db->select("users", array("1", "=", "1"))->results();
-        $users = array();
-        foreach ($results as $key => $val) {
-            array_push($users, array(
-                "uid" => $val->{"uid"},
-                "poza"  => $val->{"poza"}
-            ));
-        }
-        return $users;
+        // VARIANTA DOAR CU NUMELE SI POZA
+        // $users = array();
+        // foreach ($results as $key => $val) {
+        //     array_push($users, array(
+        //         "uid" => $val->{"uid"},
+        //         "poza"  => $val->{"poza"}
+        //     ));
+        // }
+        return $results;
     }
 }

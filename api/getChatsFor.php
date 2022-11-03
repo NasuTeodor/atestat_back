@@ -21,16 +21,15 @@ if ($method == "POST") {
     $chatList = array();
     
     foreach($userList as $usr){
-        if($usr != $uid)
+        if($usr->uid != $uid)
         {
-            //OH NO LORD NO
-            $chat = new Chat($uid, $usr);
-            // $chat->setUsers($uid, $usr);
+            $chat = new Chat($uid, $usr->uid);
+            $chat->setUsers($uid, $usr);
             if($chat->testFor())
                 array_push($chatList, $usr);
         }
     }
 
-    echo json_encode($userList);
+    echo json_encode($chatList);
 
 }
