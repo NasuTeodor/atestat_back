@@ -58,6 +58,12 @@ class User
             return 0;
     }
 
+    public function updateImge($img)
+    {
+        $sql = 'UPDATE users SET poza = ? WHERE uid = ?';
+        $this->_db->query($sql, array($img, $this->_uid));
+    }
+
     //CHECK FOR ALREADY TAKEN TO BE USED IN CREATE USER
     public function takenUser()
     {
