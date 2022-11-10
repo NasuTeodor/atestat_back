@@ -9,8 +9,8 @@ class User
     public function __construct($uid, $pass)
     {
 
-        // $this->_db = Dbh::getInstance();
-        $this->_db = new Dbh();
+        $this->_db = Dbh::getInstance();
+        // $this->_db = new Dbh();
         $this->_uid = $uid;
         $this->_pass = $pass;
     }
@@ -24,6 +24,7 @@ class User
     public function fullCheck()
     {
         $result = $this->_db->select("users", array("pass", "=", $this->_pass))->results();
+
         // if(in_array($this->_uid, $result[0]))
         //     return 1;
         // else
@@ -43,7 +44,6 @@ class User
         $this->_db->delete("users", array("pass", "=", $this->_pass));
     }
 
-    //corecteaza campurile pentru baza
     public function createUser($img)
     {
         $taken = $this->takenUser();
@@ -68,16 +68,14 @@ class User
     public function takenUser()
     {
         $users = $this->_db->select("users", array("1", "=", "1"))->results();
-        // if(in_array($this->_uid ,$users[0]->{'uid'}))
-        //     return 1;
-        // else return 0;
-        // print_r($users);
-        // echo " <br>";
+
         foreach ($users as $key => $val) {
             if ($this->_uid == $val->{"uid"})
                 return 1;
         }
+
         // nu pot sa cred ca verific si astea || greseala la struct bazei de date
+
         foreach ($users as $key => $val) {
             if ($this->_pass == $val->{"pass"})
                 return 1;
@@ -88,14 +86,6 @@ class User
     public function getUsers()
     {
         $results = $this->_db->select("users", array("1", "=", "1"))->results();
-        // VARIANTA DOAR CU NUMELE SI POZA
-        // $users = array();
-        // foreach ($results as $key => $val) {
-        //     array_push($users, array(
-        //         "uid" => $val->{"uid"},
-        //         "poza"  => $val->{"poza"}
-        //     ));
-        // }
         return $results;
     }
 }

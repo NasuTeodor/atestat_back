@@ -26,10 +26,10 @@ if ($method == "POST") {
         if(isset($_SESSION["token"])){
             $token->updateToken();
             if($token->checkToken($_SESSION['token'])){
-                echo "esti bun bv";
+                echo "esti bun";
             } else {
                 unset($_SESSION['token']);
-                echo "esti prost de ai asta";
+                echo "de unde ai asta";
             }
 
         } else {
@@ -38,10 +38,10 @@ if ($method == "POST") {
             if($gen != 0)
                 echo json_encode($gen);
             else
-                echo "meci mai prst";
+                echo "na mers";
         }
 
     } else 
-        echo "user prost bv";
+        echo "user prost";
 
 }

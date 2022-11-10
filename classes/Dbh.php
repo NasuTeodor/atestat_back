@@ -39,7 +39,6 @@ class Dbh
                 $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
                 $this->_count = $this->_query->rowCount();
             }
-            // echo $sql . " " . $param;
         }
 
         return $this;
@@ -103,8 +102,6 @@ class Dbh
         }
     }
 
-
-    // FUNCTIONEAZA MAI BINE PICIOARELE LUI COSMIN
     public function update($table, $id, $fields = array())
     {
 
@@ -169,12 +166,6 @@ class Dbh
         catch(Exception $e){
             return 0;
         }
-        
-        
-        // if($this->_query->execute())
-        //     return 1;
-        // else 
-        //     return 0;
     }
 
     public function results()
