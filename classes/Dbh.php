@@ -7,7 +7,7 @@ class Dbh
     public function __construct()
     {
         try {
-            $this->_pdo = new PDO('mysql:host=sql300.epizy.com;dbname=epiz_32971166_atestat', 'epiz_32971166', 'EP05cRI0pHmfS4Z');
+            $this->_pdo = new PDO('mysql:host=eu-cdbr-west-03.cleardb.net;dbname=heroku_3a8185354351cf1', 'b1a0d98fcd7641', '6aa366d5');
         } catch (PDOException $e) {
             die($e->getMessage());
         }
