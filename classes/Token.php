@@ -42,7 +42,7 @@ class Token
         $tokens = $this->_db->select("tokens", array("1", "=", "1"))->results();
         foreach ($tokens[0] as $key => $val) {
             $diff = $time - $val;
-            if ($diff >= 600)
+            if ($diff >= 3600)
                 $this->_db->delete("tokens", array("data", "=", $val));
         }
         return $this;
