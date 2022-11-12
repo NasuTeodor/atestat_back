@@ -41,7 +41,8 @@ class User
 
     public function removeUser()
     {
-        $this->_db->delete("users", array("pass", "=", $this->_pass));
+        if ($this->fullCheck())
+            $this->_db->delete("users", array("pass", "=", $this->_pass));
     }
 
     public function createUser($img)
