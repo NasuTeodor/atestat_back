@@ -36,7 +36,7 @@ class Dbh
             }
 
             if ($this->_query->execute()) {
-                $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
                 $this->_count = $this->_query->rowCount();
             }
         }
@@ -109,7 +109,7 @@ class Dbh
             $set = "";
             $x = 1;
             foreach ($fields as $name => $value) {
-                $set .= "${name} = ?";
+                $set .= "{$name} = ?";
 
                 if ($x < count($fields)) {
                     $set .= ", ";
@@ -118,7 +118,7 @@ class Dbh
             }
 
             // $sql = "UPDATE " . $table . " SET " . $set . " WHERE id=${name}";
-            $sql = "UPDATE " . $table . " SET " . $set . " WHERE id=${id}";
+            $sql = "UPDATE " . $table . " SET " . $set . " WHERE id={$id}";
             echo $sql . " <br> " . $fields; 
             $this->query($sql, $fields);
         }
@@ -170,6 +170,6 @@ class Dbh
 
     public function results()
     {
-        return $this->_results;
+        return $this->_result;
     }
 }
