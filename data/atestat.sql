@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gazdă: 127.0.0.1
--- Timp de generare: mart. 23, 2023 la 07:34 AM
+-- Timp de generare: mai 01, 2023 la 09:43 PM
 -- Versiune server: 10.4.24-MariaDB
 -- Versiune PHP: 8.1.6
 
@@ -39,7 +39,8 @@ CREATE TABLE `chatadminuser1` (
 
 INSERT INTO `chatadminuser1` (`uid`, `mesaj`, `timp`) VALUES
 ('admin', 'fhjhjljhgx', 1671087599),
-('admin', 'fjkljh', 1671087606);
+('admin', 'fjkljh', 1671087606),
+('admin', 'a', 1680241631);
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,9 @@ INSERT INTO `chatuser2admin` (`uid`, `mesaj`, `timp`) VALUES
 ('user2', 'RASPUNDEE', 1667835647),
 ('user2', 'am inteles', 1668426750),
 ('admin', 'poate', 1675108128),
-('admin', 'teoretic asta este cea mai veche conversatie din baza de date', 1678992816);
+('admin', 'teoretic asta este cea mai veche conversatie din baza de date', 1678992816),
+('admin', 'testez daca am distrus codul', 1680190149),
+('admin', 'trebuie sa ma asigur iar ca merge complet inainte sa il pun pe cd', 1682970050);
 
 -- --------------------------------------------------------
 
@@ -140,9 +143,7 @@ INSERT INTO `chatuser4admin` (`uid`, `mesaj`, `timp`) VALUES
 ('user4', 'te stiu eu pe tine', 1678948874),
 ('user4', 'nu raspunzi decat dupa ce trimit mesaje', 1678948881),
 ('user4', 'ce foame mi-e', 1678948905),
-('admin', 'as prefera sa dorm decat sa merg la liceu', 1678948946),
-('admin', 'also', 1678948950),
-('admin', 'nahkdjsa', 1678948971);
+('admin', 'as prefera sa dorm decat sa merg la liceu', 1678948946);
 
 -- --------------------------------------------------------
 
@@ -159,8 +160,8 @@ CREATE TABLE `tokens` (
 --
 
 INSERT INTO `tokens` (`data`) VALUES
-(1679551719),
-(1679552752),
+(1682970011),
+(1682970080),
 (2147483647);
 
 -- --------------------------------------------------------
